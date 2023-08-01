@@ -25,11 +25,29 @@ public class ParentService {
 //        return new ArrayList<>(parentRepository.findAllByidUser(id));
 //    }
 
-    public List<Parent> getAllParentByUserId(){
+    public List<Parent> getAllParent(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AccountDetails accountDetails = (AccountDetails)authentication.getPrincipal();
         Citizen citizen = citizenService.getCitizen(accountDetails.getAccount().getPassport());
         return new ArrayList<>(parentRepository.findAllByidUser(citizen));
+    }
+
+    public List<Parent> getAllParentByUserId(int id){
+        Citizen citizen = citizenService.getCitizenById(id);
+        return new ArrayList<>(parentRepository.findAllByidUser(citizen));
+    }
+
+    public void deleteParent(Parent parent){
+        parentRepository.delete(parent);
+    }
+
+    public void saveWithCitizenId(Parent parent, int id){
+        parent.setIdUser(citizenService.getCitizenById(id));
+        parentRepository.save(parent);
+    }
+
+    public Parent getParentById(int id){
+        return parentRepository.findById(id);
     }
 
 }

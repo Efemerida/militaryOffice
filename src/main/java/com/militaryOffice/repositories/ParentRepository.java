@@ -11,4 +11,5 @@ import java.util.Set;
 @Repository
 public interface ParentRepository extends JpaRepository<Parent, Integer> {
     List<Parent> findAllByidUser(Citizen idUser);
+    Parent findById(int id);
 }

@@ -21,4 +21,10 @@ public class MedicalCardService {
         MedicalCard medicalCard = medicalCardRepository.findByidUser(citizen);
         return medicalCard;
     }
+
+    public MedicalCard getMedicalCardById(int id){
+        Citizen citizen = citizenService.getCitizenById(id);
+        MedicalCard medicalCard = medicalCardRepository.findByidUser(citizen);
+        return medicalCard;
+    }
 }

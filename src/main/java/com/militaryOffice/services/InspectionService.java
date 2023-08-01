@@ -21,4 +21,10 @@ public class InspectionService {
         return inspections;
     }
 
+    public List<Inspection> getAllInspectionByIdUser(int id){
+        Citizen citizen = citizenService.getCitizenById(id);
+        List<Inspection> inspections = inspectionRepository.findAllByidUser(citizen);
+        return inspections;
+    }
+
 }

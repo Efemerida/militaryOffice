@@ -10,6 +10,7 @@ import java.util.List;
 public interface ServiceRepository extends JpaRepository<Service, Integer> {
 
     List<Service> findAllByidUser(Citizen idUser);
+    Service findById(int id);
 
 
 }

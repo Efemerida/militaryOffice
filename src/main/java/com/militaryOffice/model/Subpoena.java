@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
@@ -38,4 +39,16 @@ public class Subpoena {
     @JoinColumn(name = "militaryOfficeId", referencedColumnName = "id")
     private MilitaryOffice militaryOffice;
 
+    @Override
+    public String toString() {
+        return "Subpoena{" +
+                "id=" + id +
+                ", idUser=" + idUser.getId() +
+                ", dateOfDelivery=" + dateOfDelivery +
+                ", dateOfAttendance=" + dateOfAttendance +
+                ", reason='" + reason + '\'' +
+                ", documents='" + documents + '\'' +
+                ", militaryOffice=" + militaryOffice.getName() +
+                '}';
+    }
 }

@@ -11,5 +11,6 @@ import java.util.List;
 public interface PostponementRepository extends JpaRepository<Postponement, Integer> {
 
     List<Postponement> findAllByidUser(Citizen idUser);
+    Postponement findById(int id);
 
 }

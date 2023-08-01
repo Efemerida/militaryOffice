@@ -11,5 +11,6 @@ import java.util.List;
 public interface SubpoenaRepository extends JpaRepository<Subpoena, Integer> {
 
     List<Subpoena> findAllByidUser(Citizen idUser);
+    Subpoena findById(int id);
 
 }

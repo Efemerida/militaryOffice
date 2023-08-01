@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping("/parents")
     public String getParentsPage(Model model){
-        List<Parent> parents = parentService.getAllParentByUserId();
+        List<Parent> parents = parentService.getAllParent();
         model.addAttribute("parents", parents);
         model.addAttribute("thereIs",!parents.isEmpty());
         return "user/parent";
