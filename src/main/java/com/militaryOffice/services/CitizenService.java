@@ -67,4 +67,14 @@ public class CitizenService {
         citizenRepository.save(citizen);
     }
 
+    public void saveSizeForm(Citizen user, int id) {
+        Citizen citizen = getCitizenById(id);
+        citizen.setSizeForm(user.getSizeForm());
+        citizen.setSizeBelt(user.getSizeBelt());
+        citizen.setSizeShoe(user.getSizeShoe());
+        citizen.setSizeGlove(user.getSizeGlove());
+        citizen.setSizeHeight(user.getSizeHeight());
+        citizen.setSizeContraindication(user.getSizeContraindication());
+        citizenRepository.save(citizen);
+    }
 }

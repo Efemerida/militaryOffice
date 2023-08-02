@@ -26,4 +26,9 @@ public class EmployeeService {
         return getEmployeeByPassport(accountDetails.getAccount().getPassport());
     }
 
+    public boolean isMainDoctor(){
+        Employee employee = getEmployeeByAuthentication();
+        return employee.getJobTitle().equals("Глав. врач");
+    }
+
 }

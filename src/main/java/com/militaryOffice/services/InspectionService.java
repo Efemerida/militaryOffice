@@ -14,6 +14,7 @@ public class InspectionService {
 
     private final InspectionRepository inspectionRepository;
     private final CitizenService citizenService;
+    private final EmployeeService employeeService;
 
     public List<Inspection> getAllInspection(){
         Citizen citizen = citizenService.getCitizenByAuthentication();
@@ -27,4 +28,10 @@ public class InspectionService {
         return inspections;
     }
 
+    public void saveWithIdUser(Inspection inspection, int id) {
+        inspection.setIdUser(citizenService.getCitizenById(id));
+        inspection.setDoctor(employeeService.getEmployeeByAuthentication());
+        inspection.setId(0);
+        inspectionRepository.save(inspection);
+    }
 }

@@ -27,4 +27,9 @@ public class MedicalCardService {
         MedicalCard medicalCard = medicalCardRepository.findByidUser(citizen);
         return medicalCard;
     }
+
+    public void saveWithIdUser(MedicalCard card, int id) {
+        card.setIdUser(citizenService.getCitizenById(id));
+        medicalCardRepository.save(card);
+    }
 }
