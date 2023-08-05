@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class MilitaryOfficeService {
 
     private final MilitaryOfficeRepository militaryOfficeRepository;
+    private final CitizenService citizenService;
 
 
     @Transactional(readOnly = true)
@@ -26,5 +28,17 @@ public class MilitaryOfficeService {
         Optional<MilitaryOffice> militaryOffice = militaryOfficeRepository.findById(id);
         if(militaryOffice.isEmpty()) throw new IllegalArgumentException();
         return militaryOffice.get();
+    }
+
+    @Transactional(readOnly = true)
+    public List<MilitaryOffice> getOfficesWithoutCurrent() {
+        MilitaryOffice currentMilitaryOffice = citizenService.getCitizenByAuthentication().getMilitaryOffice();
+        List<MilitaryOffice> allMilitaryOffices = getAllMilitaryOffices();
+        List<MilitaryOffice> militaryOfficeList = new ArrayList<>();
+        for(MilitaryOffice militaryOffice: allMilitaryOffices){
+            if(!currentMilitaryOffice.getId().equals(militaryOffice.getId())) militaryOfficeList.add(militaryOffice);
+        }
+        return militaryOfficeList;
+
     }
 }
